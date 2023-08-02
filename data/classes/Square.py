@@ -31,7 +31,7 @@ class Square:
         return columns[self.x] + str(self.y + 1)
 
     def draw(self, display):
-        # configures if tile should be light or dark or highlighted tile
+        # configures if tile should be light or dark or highlighted tile    
         if self.highlight:
             pygame.draw.rect(display, self.highlight_color, self.rect)
         else:
