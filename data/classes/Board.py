@@ -77,6 +77,14 @@ class Board:
         elif (clicked_square.occupying_piece != None) & (clicked_square.occupying_piece.color == self.turn):
             self.selected_piece = clicked_square.occupying_piece
 
+    def is_in_checkmate(self, color):
+        for piece in [i.occupying_piece for i in self.squares]:
+            if (piece != None) & (piece.notation == 'K') & (piece.color == color):
+                king = piece
+            if (king.get_valid_moves(self) == []) & (self.is_in_check(color)):
+                return True
+        return False
+
     def draw(self, display):
         if self.selected_piece is not None:
             self.get_square_from_pos(self.selected_piece.pos).highlight = True
