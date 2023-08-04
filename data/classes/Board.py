@@ -85,6 +85,44 @@ class Board:
                 return True
         return False
 
+    def is_in_check(self, color, board_change=None):
+        output = False
+        king_pos = None
+        changing_piece = None
+        old_square = None
+        new_square = None
+        new_square_old_piece = None
+        if board_change is not None:
+            for square in self.squares:
+                if square.pos == board_change[0]:
+                    changing_piece = square.occupying_piece
+                    old_square = square
+                    old_square.occupying_piece = None
+            for square in self.squares:
+                if square.pos == board_change[1]:
+                    new_square = square
+                    new_square_old_piece = new_square.occupying_piece
+                    new_square.occupying_piece = changing_piece
+        pieces = [i.occupying_piece for i in self.squares if i.occupying_piece is not None]
+        if changing_piece is not None:
+            if changing_piece.notation == 'K':
+                king_pos = new_square.pos
+        if king_pos == None:
+            for piece in pieces:
+                if piece.notation == 'K' and piece.color == color:
+                    king_pos = piece.pos
+        for piece in pieces:
+            if piece.color != color:
+                for square in piece.atttacking_squares(self):
+                    if square.pos == king_pos:
+                        output = True
+        if board_change is not None:
+            old_square.occupying_piece = changing_piece
+            new_square.occupying_piece = new_square_old_piece
+        return output
+
+
+
     def draw(self, display):
         if self.selected_piece is not None:
             self.get_square_from_pos(self.selected_piece.pos).highlight = True
