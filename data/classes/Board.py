@@ -7,7 +7,7 @@ from pieces.Bishop import Bishop
 from pieces.Knight import Knight
 from pieces.King import King
 from pieces.Pawn import Pawn
-from pieces import Queen
+from pieces.Queen import Queen
 class Board:
     def __init__(self, width, height):
         self.width = width
