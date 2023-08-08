@@ -2,7 +2,7 @@
 
 import pygame
 import sys
-sys.path.append('data/classes/pieces/Pawn.py')
+sys.path.append('data/classes/pieces/Piece.py')
 import Piece
 class Pawn(Piece) :
     def __init__(self, pos, color, board):
