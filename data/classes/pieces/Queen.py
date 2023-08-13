@@ -1,8 +1,7 @@
 # Jedd Alcalde
 
 import pygame
-import sys
-sys.path.append('data/classes/pieces/Piece.py')
+from data.classes.Piece import Piece
 
 class Queen(Piece):
     def __init__(self, pos, color, board):

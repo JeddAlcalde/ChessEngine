@@ -1,13 +1,13 @@
 # Jedd Alcalde
 
 import pygame
-from Square import Square
-from pieces.Rook import Rook
-from pieces.Bishop import Bishop
-from pieces.Knight import Knight
-from pieces.King import King
-from pieces.Pawn import Pawn
-from pieces.Queen import Queen
+from data.classes.Square import Square
+from data.classes.pieces.Rook import Rook
+from data.classes.pieces.Bishop import Bishop
+from data.classes.pieces.Knight import Knight
+from data.classes.pieces.King import King
+from data.classes.pieces.Pawn import Pawn
+from data.classes.pieces.Queen import Queen
 class Board:
     def __init__(self, width, height):
         self.width = width
@@ -48,7 +48,7 @@ class Board:
         for y, row in enumerate(self.config):
             for x, piece in enumerate(row):
                 if piece != '':
-                    square = self.get_square_from_pos((x,y,))
+                    square = self.get_square_from_pos((x,y))
                     #looking inside contents, what piece does it have
                     if piece[1] == 'R':
                         square.occupying_piece = Rook((x,y), 'white' if piece[0] == 'w' else 'black', self)
@@ -60,7 +60,7 @@ class Board:
                         square.occupying_piece = Queen((x,y), 'white' if piece[0] == 'w' else 'black', self)
                     elif piece[1] == 'K':
                         square.occupying_piece = King((x,y), 'white' if piece[0] == 'w' else 'black', self)
-                    elif piece[1] == 'Pawn':
+                    elif piece[1] == 'P':
                         square.occupying_piece = Pawn((x,y), 'white' if piece[0] == 'w' else 'black', self)
 
     def handle_click(self, mx, my):

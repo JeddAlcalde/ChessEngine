@@ -2,8 +2,7 @@
 
 import pygame
 import sys
-sys.path.append('data/classes/Board.py')
-import Board
+from data.classes.Board import Board
 
 pygame.init()
 
