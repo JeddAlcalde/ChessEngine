@@ -39,3 +39,28 @@ class King(Piece):
         if self.can_castle(board) == 'kingside':
             output.append(board.get_square_from_pos((self.x + 2, self.y)))
         return output
+    
+    def can_castle(self, board):
+        if not self.has_moved:
+            if self.color == 'white':
+                queenside_rook = board.get_piece_from((0,7))
+                kingside_rook = board.get_piece_from_pos((7,7))
+                if queenside_rook != None:
+                    if not queenside_rook.has_moved:
+                        if[board.get_piece_from_pos((i,7)) for i in range(1,4)] == [None, None, None]:
+                            return 'queenside'
+                if kingside_rook != None:
+                    if not kingside_rook.has_moved:
+                        if[board.get_piece_from_pos((i,7)) for i in range(5,7)] == [None, None, None]:
+                            return 'kingside'
+            elif self.color == 'black':
+                queenside_rook = board.get_piece_from((0,0))
+                kingside_rook = board.get_piece_from_pos((7,0))
+                if queenside_rook != None:
+                    if not queenside_rook.has_moved:
+                        if[board.get_piece_from_pos((i,0)) for i in range(1,4)] == [None, None, None]:
+                            return 'queenside'
+                if kingside_rook != None:
+                    if not kingside_rook.has_moved:
+                        if[board.get_piece_from_pos((i,0)) for i in range(5,7)] == [None, None, None]:
+                            return 'kingside'
