@@ -66,12 +66,14 @@ class Board:
                         square.occupying_piece = Pawn((x,y), 'white' if piece[0] == 'w' else 'black', self)
 
     def handle_click(self, mx, my):
-        x = mx // self.width
-        y = my //self.height
-        clicked_square = self.get_square_from_pos
+        x = mx // self.tile_width
+        y = my //self.tile_height
+        clicked_square = self.get_square_from_pos((x,y))
         #to select a piece
-        if (self.selected_piece == None) & (clicked_square.occupying_piece != None) & (clicked_square.occupying_piece.color == self.turn):
-            self.selected_piece = clicked_square.occupying_piece
+        if (self.selected_piece is None):
+            if (clicked_square.occupying_piece is not None):
+                if (clicked_square.occupying_piece.color == self.turn):
+                    self.selected_piece = clicked_square.occupying_piece
         #move a selected piece to an empty clicked square if legal
         elif self.selected_piece.move(self, clicked_square):
             self.turn = 'white' if self.turn == 'black' else 'black'
