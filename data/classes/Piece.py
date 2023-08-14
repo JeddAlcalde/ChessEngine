@@ -40,6 +40,11 @@ class Piece:
             square.occupying_piece = self
             board.selected_piece = None
             self.has_moved = True
+            # Pawn promotion
+            if self.notation == ' ':
+                if self.y == 0 or self.y == 7:
+                    from data.classes.pieces.Queen import Queen
+                    square.occupying_piece = Queen((self.x, self.y), self.color, board)
             # Move rook if king castles
             if self.notation == 'K':
                 if prev_square.x - self.x == 2:
@@ -48,10 +53,10 @@ class Piece:
                 elif prev_square.x - self.x == -2:
                     rook = board.get_piece_from_pos((7, self.y))
                     rook.move(board, board.get_square_from_pos((5, self.y)), force = True)
-                return True
-            else:
-                board.selected_piece = None
-                return False
+            return True
+        else:
+            board.selected_piece = None
+            return False
             
     def attacking_squares(self, board):
         return self.get_moves(board)

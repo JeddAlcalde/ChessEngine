@@ -76,10 +76,11 @@ class Board:
                     self.selected_piece = clicked_square.occupying_piece
         #move a selected piece to an empty clicked square if legal
         elif self.selected_piece.move(self, clicked_square):
-            self.turn = 'white' if self.turn == 'black' else 'black'
+            self.turn = ('white' if self.turn == 'black' else 'black')
         #to select a new piece
-        elif (clicked_square.occupying_piece != None) & (clicked_square.occupying_piece.color == self.turn):
-            self.selected_piece = clicked_square.occupying_piece
+        elif (clicked_square.occupying_piece is not None):
+            if (clicked_square.occupying_piece.color == self.turn):
+                self.selected_piece = clicked_square.occupying_piece
 
     def is_in_checkmate(self, color):
         for piece in [i.occupying_piece for i in self.squares]:
