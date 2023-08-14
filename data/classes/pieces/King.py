@@ -6,7 +6,7 @@ from data.classes.Piece import Piece
 class King(Piece):
     def __init__(self, pos, color, board):
         super().__init__(pos, color, board)
-        img_path = 'data/imgs' + color[0] + '_king.png'
+        img_path = 'data/imgs/' + color[0] + '_king.png'
         self.img = pygame.image.load(img_path)
         self.img = pygame.transform.scale(self.img, (board.tile_width - 20, board.tile_height -20))
         self.notation = 'K'
@@ -42,7 +42,7 @@ class King(Piece):
     def can_castle(self, board):
         if not self.has_moved:
             if self.color == 'white':
-                queenside_rook = board.get_piece_from((0,7))
+                queenside_rook = board.get_piece_from_pos((0,7))
                 kingside_rook = board.get_piece_from_pos((7,7))
                 if queenside_rook != None:
                     if not queenside_rook.has_moved:
@@ -53,7 +53,7 @@ class King(Piece):
                         if[board.get_piece_from_pos((i,7)) for i in range(5,7)] == [None, None, None]:
                             return 'kingside'
             elif self.color == 'black':
-                queenside_rook = board.get_piece_from((0,0))
+                queenside_rook = board.get_piece_from_pos((0,0))
                 kingside_rook = board.get_piece_from_pos((7,0))
                 if queenside_rook != None:
                     if not queenside_rook.has_moved:

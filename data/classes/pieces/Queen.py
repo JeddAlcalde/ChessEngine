@@ -15,16 +15,16 @@ class Queen(Piece):
         output = []
         moves_north = []
         for y in range(self.y)[::-1]:
-            moves_north.append(board.get_square_from_pos(self.x, y))
+            moves_north.append(board.get_square_from_pos((self.x, y)))
         moves_east = []
         for x in range(self.x + 1, 8):
-            moves_east.append(board.get_square_from_pos(x, self.y))
+            moves_east.append(board.get_square_from_pos((x, self.y)))
         moves_south = []
         for y in range(self.y + 1, 8):
-            moves_south.append(board.get_square_from_pos(self.x, y))
+            moves_south.append(board.get_square_from_pos((self.x, y)))
         moves_west = []
         for y in range(self.x)[::-1]:
-            moves_west.append(board.get_square_from_pos(x, self.y))
+            moves_west.append(board.get_square_from_pos((x, self.y)))
         output.append(moves_north)
         output.append(moves_east)
         output.append(moves_south)
@@ -34,27 +34,27 @@ class Queen(Piece):
         for i in range(1, 8):
             if self.x + i > 7 or self.y - i < 0:
                 break
-            moves_ne.append(board.get_square_from_pos(self.x + i, self.y - i))
+            moves_ne.append(board.get_square_from_pos((self.x + i, self.y - i)))
             output.append(moves_ne)
         #back left
         moves_se = []
         for i in range(1, 8):
             if self.x + i > 7 or self.y + i > 7:
                 break
-            moves_se.append(board.get_square_from_pos(self.x + i, self.y + i))
+            moves_se.append(board.get_square_from_pos((self.x + i, self.y + i)))
             output.append(moves_se)
         #back right
         moves_sw = []
         for i in range(1, 8):
             if self.x - i < 0 or self.y + i > 7:
                 break
-            moves_sw.append(board.get_square_from_pos(self.x - i, self.y + i))
+            moves_sw.append(board.get_square_from_pos((self.x - i, self.y + i)))
             output.append(moves_sw)
         #front right
         moves_nw = []
         for i in range(1, 8):
             if self.x - i < 0 or self.y - i < 0:
                 break
-            moves_nw.append(board.get_square_from_pos(self.x - i, self.y - i))
+            moves_nw.append(board.get_square_from_pos((self.x - i, self.y - i)))
             output.append(moves_nw)
         return output

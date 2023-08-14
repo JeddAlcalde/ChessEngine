@@ -25,7 +25,7 @@ if __name__ == '__main__':
         # Quit the game if the user presses the close button
             if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.MOUSEBUTTONGDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 # If Mouse is clicked
                 if event.button == 1:
                     board.handle_click(mx, my)

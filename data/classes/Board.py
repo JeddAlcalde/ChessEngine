@@ -8,6 +8,7 @@ from data.classes.pieces.Knight import Knight
 from data.classes.pieces.King import King
 from data.classes.pieces.Pawn import Pawn
 from data.classes.pieces.Queen import Queen
+from data.classes.Piece import Piece
 class Board:
     def __init__(self, width, height):
         self.width = width
@@ -51,11 +52,11 @@ class Board:
                     square = self.get_square_from_pos((x,y))
                     #looking inside contents, what piece does it have
                     if piece[1] == 'R':
-                        square.occupying_piece = Rook((x,y), 'white' if piece[0] == 'w' else 'black', self)
+                        square.occupying_piece = Rook(Piece((x,y), 'white' if piece[0] == 'w' else 'black', self)) # why can rook not access Piece?
                     elif piece[1] == 'N':
                         square.occupying_piece = Knight((x,y), 'white' if piece[0] == 'w' else 'black', self)
                     elif piece[1] == 'B':
-                        square.occupying_piece = Bishop((x,y), 'white' if piece[0] == 'w' else 'black', self)
+                        square.occupying_piece = Bishop(Piece((x,y), 'white' if piece[0] == 'w' else 'black', self)) # why can bishop also not access Piece?
                     elif piece[1] == 'Q':
                         square.occupying_piece = Queen((x,y), 'white' if piece[0] == 'w' else 'black', self)
                     elif piece[1] == 'K':
@@ -79,10 +80,11 @@ class Board:
 
     def is_in_checkmate(self, color):
         for piece in [i.occupying_piece for i in self.squares]:
-            if (piece != None) & (piece.notation == 'K') & (piece.color == color):
-                king = piece
-            if (king.get_valid_moves(self) == []) & (self.is_in_check(color)):
-                return True
+            if (piece != None):
+                if (piece.notation == 'K') & (piece.color == color):
+                    king = piece
+                    if (king.get_valid_moves(self) == []) & (self.is_in_check(color)):
+                        return True
         return False
 
     def is_in_check(self, color, board_change=None):
@@ -113,7 +115,7 @@ class Board:
                     king_pos = piece.pos
         for piece in pieces:
             if piece.color != color:
-                for square in piece.atttacking_squares(self):
+                for square in piece.attacking_squares(self):
                     if square.pos == king_pos:
                         output = True
         if board_change is not None:
