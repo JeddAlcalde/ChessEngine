@@ -23,7 +23,7 @@ class Queen(Piece):
         for y in range(self.y + 1, 8):
             moves_south.append(board.get_square_from_pos((self.x, y)))
         moves_west = []
-        for y in range(self.x)[::-1]:
+        for x in range(self.x)[::-1]:
             moves_west.append(board.get_square_from_pos((x, self.y)))
         output.append(moves_north)
         output.append(moves_east)
