@@ -1,4 +1,4 @@
-#Jedd Alcalde
+# Jedd Alcalde
 
 import pygame
 from data.classes.Piece import Piece

@@ -1,7 +1,6 @@
-#Jedd Alcalde
+# Jedd Alcalde
 
 import pygame
-import sys
 from data.classes.Board import Board
 
 pygame.init()

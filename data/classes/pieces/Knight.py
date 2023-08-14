@@ -2,6 +2,7 @@
 
 import pygame
 from data.classes.Piece import Piece
+
 class Knight(Piece):
     def __init__(self, pos, color, board):
         super().__init__(pos, color, board)

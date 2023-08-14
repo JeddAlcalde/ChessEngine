@@ -9,6 +9,7 @@ from data.classes.pieces.King import King
 from data.classes.pieces.Pawn import Pawn
 from data.classes.pieces.Queen import Queen
 from data.classes.Piece import Piece
+
 class Board:
     def __init__(self, width, height):
         self.width = width

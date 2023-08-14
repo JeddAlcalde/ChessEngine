@@ -1,4 +1,4 @@
-#Jedd Alcalde
+# Jedd Alcalde
 
 import pygame
 
