@@ -53,11 +53,11 @@ class Board:
                     square = self.get_square_from_pos((x,y))
                     #looking inside contents, what piece does it have
                     if piece[1] == 'R':
-                        square.occupying_piece = Rook(Piece((x,y), 'white' if piece[0] == 'w' else 'black', self)) # why can rook not access Piece?
+                        square.occupying_piece = Rook((x,y), 'white' if piece[0] == 'w' else 'black', self) # why can rook not access Piece?
                     elif piece[1] == 'N':
                         square.occupying_piece = Knight((x,y), 'white' if piece[0] == 'w' else 'black', self)
                     elif piece[1] == 'B':
-                        square.occupying_piece = Bishop(Piece((x,y), 'white' if piece[0] == 'w' else 'black', self)) # why can bishop also not access Piece?
+                        square.occupying_piece = Bishop((x,y), 'white' if piece[0] == 'w' else 'black', self) # why can bishop also not access Piece?
                     elif piece[1] == 'Q':
                         square.occupying_piece = Queen((x,y), 'white' if piece[0] == 'w' else 'black', self)
                     elif piece[1] == 'K':
