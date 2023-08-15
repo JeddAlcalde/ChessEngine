@@ -50,7 +50,7 @@ class King(Piece):
                             return 'queenside'
                 if kingside_rook != None:
                     if not kingside_rook.has_moved:
-                        if[board.get_piece_from_pos((i,7)) for i in range(5,7)] == [None, None, None]:
+                        if[board.get_piece_from_pos((i,7)) for i in range(5,7)] == [None, None]:
                             return 'kingside'
             elif self.color == 'black':
                 queenside_rook = board.get_piece_from_pos((0,0))
@@ -61,5 +61,5 @@ class King(Piece):
                             return 'queenside'
                 if kingside_rook != None:
                     if not kingside_rook.has_moved:
-                        if[board.get_piece_from_pos((i,0)) for i in range(5,7)] == [None, None, None]:
+                        if[board.get_piece_from_pos((i,0)) for i in range(5,7)] == [None, None]:
                             return 'kingside'
