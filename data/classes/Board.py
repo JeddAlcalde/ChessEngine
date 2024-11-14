@@ -136,3 +136,12 @@ class Board:
                 square.highlight = True
         for square in self.squares:
             square.draw(display)
+
+    def white_score(self):
+        pass
+
+    def black_score(self):
+        pass
+
+    def evaluate_position(self):
+        pass
